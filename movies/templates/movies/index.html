@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<h1>Movies</h1>
+  <div id="res"></div>
+  <div id="abc">
+  {% for m in movie %}
+    {{m.title}}
+  {% endfor %}
+  </div>
+{% endblock body %}
+
+{% block script %}
+  <script>
+  
+    {% comment %} const URL = 'https://api.themoviedb.org/3/movie/550?api_key=200c1929e73abf9ded502fcb29ea0d76' {% endcomment %}
+    const URL = 'https://api.themoviedb.org/3/movie/top_rated?api_key=200c1929e73abf9ded502fcb29ea0d76&language=en-US&page=1'
+    
+
+    axios({
+          mathod: 'get',
+          url: URL,
+        })
+          {% comment %} .then(res => console.log(res.data.results)) {% endcomment %}
+          .then(res=> {
+            const movies = res.data.results
+            console.log(movies)
+            movies.forEach(movie =>{
+              document.getElementById('abc').innerText= movie
+            })
+          })
+            
+          
+          .catch(err => console.error(err))
+    function showOutPut(res){
+      document.getElementById('res').innerText = ` ${res} ${res.data}`
+    }
+  </script>
+{% endblock script %}  
+ 
+

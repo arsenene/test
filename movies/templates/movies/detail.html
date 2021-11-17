@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Movie Detail</h1>
+  <hr>
+  <img src="{{ movie.poster_path }}" alt="movie poster">
+  <p></p>
+  <h4>영화 제목: {{ movie.title }}</h4>
+  <p></p>
+  <p>평점: {{movie.vote_average }}</p>
+  <p>줄거리: {{ movie.overview }}</p>
+{% endblock %}
